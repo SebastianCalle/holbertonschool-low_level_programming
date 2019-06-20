@@ -1,4 +1,4 @@
-#include <stndio.h>
+#include <stdio.h>
 /**
 *main - puts messages
 *Return: 0
