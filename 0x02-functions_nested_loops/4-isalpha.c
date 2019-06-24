@@ -1,11 +1,12 @@
 #include "holberton.h"
 /**
- *main - prints the alphabet
- *Return: 0
+ * _isalpha - prints if the caracter is alphabet
+ * @c: is parameter
+ * Return: 0
 */
 int _isalpha(int c)
 {
-	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
 		return (1);
 	}

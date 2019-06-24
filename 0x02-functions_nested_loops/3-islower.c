@@ -1,11 +1,12 @@
 #include "holberton.h"
 /**
- * _isalpha - prints if is alpha
- *Return: 0
+ * _islower - prints if is lowercase
+ * @c: is parameter
+ * Return: 0
 */
 int _islower(int c)
 {
-	if(c >= 'a' && c <= 'z')
+	if (c >= 'a' && c <= 'z')
 	{
 		return (1);
 	}
