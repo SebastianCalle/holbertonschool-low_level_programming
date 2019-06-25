@@ -1,5 +1,4 @@
 #include <stdio.h>
-#define d 1000000000
 /**
  * main - first 98 fibonacci numbers
  * Return: 0
@@ -9,6 +8,7 @@ int main(void)
 	unsigned long int ia = 0, i = 1, ja = 0, j = 2;
 	unsigned long int aa, bb, cc;
 	int c;
+	long d = 1000000000;
 
 	printf("%lu, %lu, ", i, j);
 	while (c < 98)
