@@ -1,24 +1,26 @@
 #include <stdio.h>
 /**
- * main - number fibonacci
+ * main - fibonnaci exceed 4,000,000
  * Return: 0
  */
 int main(void)
 {
-	int g = 1;
-	int f = 2;
-	int n, i, a;
+	int i = 1;
+	int j = 2;
+	int total = 0;
+	int k;
 
-	for (i = 0; i <= 4000000; i++)
+	while (j < 4000000)
 	{
-		n = g + f;
-		g = f;
-		f = n;
-		if (n % 2 == 0)
+		if (j % 2 == 0)
 		{
-			a = a + n; 
-			printf("%d, ", a);
+			total += j;
 		}
+
+		k = j;
+		j += i;
+		i = k;
 	}
-	printf("\n");
+	printf("%d\n", total);
+	return (0);
 }
