@@ -3,11 +3,9 @@
  * add - add two integers
  * @i: integer one
  * @j: integer two
- * Return: the value
+ * Return:0
  */
 int add(int i, int j)
 {
-	int m;
-	m = i + j;
-	return(m);
+	return(i + j);
 }
