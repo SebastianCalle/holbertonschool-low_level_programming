@@ -2,6 +2,7 @@
 /**
  * print_times_table - print the n table
  * @n: parameter
+ * Return: 0
  */
 void print_times_table(int n)
 {
