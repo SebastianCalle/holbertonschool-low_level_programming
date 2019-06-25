@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
  * print_to_98 - print the numberso from n to 98
+ * @n: parameter
  */
 void print_to_98(int n)
 {
@@ -11,7 +12,7 @@ void print_to_98(int n)
 	else
 	{
 
-		while(n < m)
+		while (n < m)
 		{
 			printf("%d, ", n);
 			n++;
@@ -19,14 +20,13 @@ void print_to_98(int n)
 				printf("%d", n);
 		}
 
-		while(n > m)
+		while (n > m)
 		{
 			printf("%d, ", n);
 			n--;
 			if (n == m)
 				printf("%d", n);
 		}
-		
 	}
 	printf("\n");
 }
