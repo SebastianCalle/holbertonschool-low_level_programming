@@ -9,12 +9,20 @@ int main(void)
 	int f = 2;
 	int n, i;
 
+	printf("%d, %d, ", g, f);
 	for (i = 0; i <= 50; i++)
 	{
-		n = g + f;
-		g = f;
-		f = n;
-		printf("%d, ", n);
+		if (i <= 49)
+		{
+			n = g + f;
+			g = f;
+			f = n;
+			printf("%d, ", n);
+		}
+		else
+		{
+			printf("%d", n);
+		}
 	}
 	printf("\n");
 }
