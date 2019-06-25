@@ -1,5 +1,5 @@
 #include <stdio.h>
-# define d = 1000000000;
+# define d 1000000000
 /**
  * main - first 98 fibonacci numbers
  * Return: 0
