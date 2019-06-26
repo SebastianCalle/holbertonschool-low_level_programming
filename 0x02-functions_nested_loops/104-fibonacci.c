@@ -1,9 +1,7 @@
 #include <stdio.h>
-#define d 10000000000
+#define DIVIDER 10000000000
 /**
- * main - main block
- * Description: Find and print the first 98 fib numbers starting with 1 and 2.
- * Numbers should be coma and space separated.
+ * main - The first 98 fibonacci
  * Return: 0
  */
 int main(void)
@@ -15,13 +13,13 @@ int main(void)
 	printf("%lu, %lu, ", i, j);
 	for (c = 2; c < 98; c++)
 	{
-		if (i + j > d || ja > 0 || ia > 0)
+		if (i + j > DIVIDER || ja > 0 || ia > 0)
 		{
-			aa = (i + j) / d;
-			bb = (i + j) % d;
+			aa = (i + j) / DIVIDER;
+			bb = (i + j) % DIVIDER;
 			cc = ia + ja + aa;
 			ia = ja;
-			fr2 = cc;
+			ja = cc;
 			i = j;
 			j = bb;
 			printf("%lu%010lu", ja, j);
