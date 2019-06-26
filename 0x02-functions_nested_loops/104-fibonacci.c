@@ -1,39 +1,37 @@
 #include <stdio.h>
-# define d 1000000000
+#define LARGEST 10000000000
 /**
- * main - first 98 fibonacci numbers
+ * main - main block
+ * Description: Find and print the first 98 fib numbers starting with 1 and 2.
+ * Numbers should be coma and space separated.
  * Return: 0
  */
 int main(void)
 {
-	unsigned long int i = 1, j = 2, ia = 0, ja = 0;
-	unsigned long int aa, bb, cc;
-	int c = 2;
+	unsigned long int fr1 = 0, bk1 = 1, fr2 = 0, bk2 = 2;
+	unsigned long int hold1, hold2, hold3;
+	int count;
 
-	printf("%lu, %lu, ", i, j);
-	while (c < 98)
+	printf("%lu, %lu, ", bk1, bk2);
+	for (count = 2; count < 98; count++)
 	{
-		if (i + j > d || ja > 0 || ia > 0)
+		if (bk1 + bk2 > LARGEST || fr2 > 0 || fr1 > 0)
 		{
-			aa = (i + j) / d;
-			bb = (i + j) % d;
-			cc = ia + ja + aa;
-			ia = ja;
-			ja = cc;
-			i = j;
-			j = bb;
-			printf("%lu%010lu", ja, j);
+			hold1 = (bk1 + bk2) / LARGEST;
+			hold2 = (bk1 + bk2) % LARGEST;
+			hold3 = fr1 + fr2 + hold1;
+			fr1 = fr2, fr2 = hold3;
+			bk1 = bk2, bk2 = hold2;
+			printf("%lu%010lu", fr2, bk2);
 		}
 		else
 		{
-			bb = i + j;
-			i = j;
-			j = bb;
-			printf("%lu", j);
+			hold2 = bk1 + bk2;
+			bk1 = bk2, bk2 = hold2;
+			printf("%lu", bk2);
 		}
-		if (c != 97)
+		if (count != 97)
 			printf(", ");
-		c++;
 	}
 	printf("\n");
 	return (0);
