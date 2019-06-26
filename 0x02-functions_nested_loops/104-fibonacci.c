@@ -6,9 +6,9 @@
  */
 int main(void)
 {
-	unsigned long int ia = 0, i = 1, ja = 0, j = 2;
+	unsigned long int i = 1, j = 2, ia = 0, ja = 0;
 	unsigned long int aa, bb, cc;
-	int c;
+	int c = 2;
 
 	printf("%lu, %lu, ", i, j);
 	while (c < 98)
