@@ -1,7 +1,7 @@
 #include <stdio.h>
-# define d 1000000000
+#define DIVIDER 10000000000
 /**
- * main - first 98 fibonacci numbers
+ * main - The first 98 fibonacci
  * Return: 0
  */
 int main(void)
@@ -11,12 +11,12 @@ int main(void)
 	int c;
 
 	printf("%lu, %lu, ", i, j);
-	while (c < 98)
+	for (c = 2; c < 98; c++)
 	{
-		if (i + j > d || ja > 0 || ia > 0)
+		if (i + j > DIVIDER || ja > 0 || ia > 0)
 		{
-			aa = (i + j) / d;
-			bb = (i + j) % d;
+			aa = (i + j) / DIVIDER;
+			bb = (i + j) % DIVIDER;
 			cc = ia + ja + aa;
 			ia = ja;
 			ja = cc;
@@ -27,13 +27,11 @@ int main(void)
 		else
 		{
 			bb = i + j;
-			i = j;
-			j = bb;
+			i = j, j = bb;
 			printf("%lu", j);
 		}
 		if (c != 97)
 			printf(", ");
-		c++;
 	}
 	printf("\n");
 	return (0);
