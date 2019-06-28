@@ -18,7 +18,6 @@ int main(void)
 			{
 				n /= i;
 			}
-				
 		}
 	}
 
