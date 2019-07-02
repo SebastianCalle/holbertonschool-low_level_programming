@@ -2,7 +2,7 @@
 /**
  * _sterlen - give the len of string
  * @s: parameter
- * Retrun: return len
+ * Return: return len
  */
 int _sterlen(char *s)
 {
@@ -24,7 +24,6 @@ void rev_string(char *s)
 	char a, z;
 
 	len = _sterlen(s) - 1;
-	
 	for (start = 0; start < len; start++)
 	{
 		a = s[start];
