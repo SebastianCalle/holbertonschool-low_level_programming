@@ -1,10 +1,10 @@
 #include "holberton.h"
 /**
- * _sterlen - give the len of string
+ * _strlen - give the len of string
  * @s: parameter
  * Return: return len
  */
-int _sterlen(char *s)
+int _strlen(char *s)
 {
 	int i, count = 0;
 
@@ -19,13 +19,12 @@ int _sterlen(char *s)
  */
 void puts2(char *str)
 {
-	int i, len;
+	int i;
 
-	len = _sterlen(str);
-	for (i = 0; i < len ; i++)
+	while (i < _strlen(str))
 	{
-		if (str[i] % 2 == 0)
-			_putchar(str[i]);
+		_putchar(str[i]);
+		i += 2;
 	}
 	_putchar('\n');
 }
