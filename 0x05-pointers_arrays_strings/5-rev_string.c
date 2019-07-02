@@ -1,22 +1,35 @@
 #include "holberton.h"
 /**
+ * _sterlen - give the len of string
+ * @s: parameter
+ * Retrun: return len
+ */
+int _sterlen(char *s)
+{
+	int i, count = 0;
+
+	for (i = 0; s[i] != '\0'; i++)
+	count++;
+
+	return (count);
+}
+/**
  * rev_string - print rev string
  * @s: parameter
  */
 void rev_string(char *s)
 {
-	int i, start, end;
-	int count = 0;
-	char rev[1000];
+	int start;
+	int len;
+	char a, z;
 
-	for (i = 0; s[i] != '\0'; i++)
-		count++;
-	end = count - 1;
-	for (start = 0; start < count; start++)
+	len = _sterlen(s) - 1;
+	
+	for (start = 0; start < len; start++)
 	{
-		rev[start] = s[end];
-		end--;
-		_putchar(rev[start]);
+		a = s[start];
+		z = s[len];
+		s[start] = z;
+		s[len--] = a;
 	}
-	_putchar('\n');
 }
