@@ -6,11 +6,13 @@
  */
 int _strlen(char *s)
 {
-	int i, c;
+	int i;
 
 	for (i = 0; s[i] != '\0'; i++)
-		c++;
-	return (c);
+	{
+
+	}
+	return (i);
 }
 /**
  * _strcat - concaenate two strings
