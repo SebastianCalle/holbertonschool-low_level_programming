@@ -1,28 +1,29 @@
 #include "holberton.h"
 
 /**
- * rot13 - converts strings letters to rot13
- * @s: string to convert to rot13
- * Return: returns encoded string
+ * rot13 - caesers cipher
+ * @s: pointer to an array of words
+ *
+ * Return: s
  */
+
 char *rot13(char *s)
 {
-	int i;
+	int a, b;
 
-	i = 0;
-	while (s[i] != '\0')
+	char test[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char res[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (a = 0; s[a] != '\0'; a++)
 	{
-		while ((s[i] >= 'a' && s[i] <= 'z') ||
-		       (s[i] >= 'A' && s[i] <= 'Z'))
+		for (b = 0; test[b] != '\0'; b++)
 		{
-			if ((s[i] >= 'N' && s[i] <= 'Z') ||
-			    (s[i] >= 'n' && s[i] <= 'z'))
-				s[i] -= 13;
-			else
-				s[i] += 13;
-			i++;
+			if (s[a] == test[b])
+			{
+				s[a] = res[b];
+				break;
+			}
 		}
-		i++;
 	}
 	return (s);
 }
