@@ -11,9 +11,9 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int num, i, j, k, l, m, sum, carry, num1, num2;
+	int num, i, j, k, l, m, sum, remainder, num1, num2;
 
-	l = k = carry =  0;
+	l = k = remainder =  0;
 	i = strlen(n1);
 	j = strlen(n2);
 	if (i + 2 > size_r || j + 2 > size_r)
@@ -26,17 +26,17 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		num1 = n1[i--] - '0';
 		if (j >= 0)
 			num2 = n2[j--] - '0';
-		sum = num1 + num2 + carry;
+		sum = num1 + num2 + remainder;
 		if (sum > 9)
 		{
-			carry = 1;
+			remainder = 1;
 			sum = sum - 10;
 		}
 		else
-			carry = 0;
+			remainder = 0;
 		r[k++] = (sum + '0');
 	}
-	if (carry == 1)
+	if (remainder == 1)
 		r[k++] = (1 + '0');
 	m = k;
 	k = k - 1;
