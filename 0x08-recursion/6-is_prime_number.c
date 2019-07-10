@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
- * is_prime_number - integer is a prime number 
+ * is_prime_number - integer is a prime number
  * @n: Integer parameter
  * Return: 1 if is prime or 0 is'n prime
  */
