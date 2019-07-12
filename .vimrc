@@ -2,9 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 let mapleader = ","
-nnoremap j h
-nnoremap k j
-nnoremap i k
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -25,6 +23,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'Conque-GDB'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -32,9 +31,9 @@ filetype plugin indent on    " required
 
 set tabstop=8
 set shiftwidth=8
-set cindent
 set autoindent
 set smartindent
+set cindent
 
 syntax on
 let g:airline_theme='onedark'
@@ -44,6 +43,7 @@ set number relativenumber
 set path+=**
 set wildmenu
 let NERDTreeShowHidden=1
+let g:termdebug_wide = 163
 
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
