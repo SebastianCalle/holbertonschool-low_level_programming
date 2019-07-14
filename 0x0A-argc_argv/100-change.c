@@ -8,17 +8,17 @@
  */
 int main(int argc, char *argv[])
 {
-	int coins[]={1, 2, 5, 10, 25};
+	int coins[] = {1, 2, 5, 10, 25};
 	int i, j, money;
 
 	j = 5;
 	i = 0;
-	if (argc == 1 || argc > 2)
+	if (argc == 1)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	if (argc == 2)
+	if (argc > 1)
 	{
 		money = atoi(argv[1]);
 		while (money > 0)
