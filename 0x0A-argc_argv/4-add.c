@@ -19,19 +19,15 @@ int main(int argc, char *argv[])
 			if (*(argv[i]) != '0' && atoi(argv[i]) == 0)
 				f = 0;
 			res += atoi(argv[i]);
-
 		}
-		if (f == 1)
-			printf("%d\n", res);
-		else
-		{
-			printf("Error\n");
-			return (1);
-		}
-
 	}
+	if (f == 1)
+		printf("%d\n", res);
 	else
+	{
 		printf("Error\n");
+		return (1);
+	}
 
 	return (0);
 }
