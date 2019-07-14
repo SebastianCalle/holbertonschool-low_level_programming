@@ -1,32 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 /**
- * main - print numfer of arguments
- * @argc: coutn
- * @argv: array
- * Return: 0
+ * main - Entry Point
+ * @argc: number of arguments in the command line
+ * @argv: hold the arguments in the command line
+ * Return: 0 if is success
  */
 int main(int argc, char *argv[])
 {
-	int res, f, i;
+	int c, d, sum = 0;
 
-	res = 0;
-	f = 1;
-	if (argc > 1)
+	for (c = 1; c < argc; c++)
 	{
-		for (i = 1; i < argc; i++)
+		d = 0;
+		while (argv[c][d])
 		{
-			if (*(argv[i]) != '0' && atoi(argv[i]) == 0)
-				f = 0;
-			res += atoi(argv[i]);
+			if (isdigit(argv[c][d]) == 0)
+			{
+				printf("Error\n");
+				return (1);
+			}
+			d++;
 		}
+		sum = sum + atoi(argv[c]);
 	}
-	if (f == 1)
-		printf("%d\n", res);
-	else
-	{
-		printf("Error\n");
-		return (1);
-	}
+	printf("%d\n", sum);
 	return (0);
 }
