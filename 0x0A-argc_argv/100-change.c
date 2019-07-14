@@ -13,12 +13,7 @@ int main(int argc, char *argv[])
 
 	j = 5;
 	i = 0;
-	if (argc == 1)
-	{
-		printf("Error\n");
-		return (1);
-	}
-	if (argc > 1)
+	if (argc == 2)
 	{
 		money = atoi(argv[1]);
 		while (money > 0)
@@ -32,6 +27,11 @@ int main(int argc, char *argv[])
 				j--;
 		}
 		printf("%d\n", i);
+		return (0);
 	}
-	return (0);
+	else
+	{
+		printf("Error\n");
+		return (1);
+	}
 }
