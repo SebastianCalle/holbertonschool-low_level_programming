@@ -36,10 +36,11 @@ char *_strdup(char *str)
 {
 	char *ns;
 
-	ns = malloc(sizeof(str) * _strlen(str));
+	ns = malloc(_strlen(str) + 1);
 	if (str == NULL)
+		return (NULL);
+	if (ns == NULL)
 		return (NULL);
 	_strcpy(ns, str);
 	return (ns);
-	free(ns);
 }
