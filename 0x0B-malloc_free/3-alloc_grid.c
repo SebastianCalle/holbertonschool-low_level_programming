@@ -3,7 +3,7 @@
 /**
  * alloc_grid - function that return 2 dimensional array
  * @width: first parameter
- * @helight: second parameter
+ * @height: second parameter
  * Return: the grid o Null if is 0
  */
 int **alloc_grid(int width, int height)
@@ -20,17 +20,20 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 	for (i = 0; i < width; i++)
 	{
-		grid[i] = malloc (height * sizeof(int *));
+		grid[i] = malloc(height * sizeof(int *));
+		if (grid[i] == NULL)
+		{
+			for (k = 0; k < i; k++)
+			{
+				free(grid[k]);
+			}
+			free(grid);
+			return (NULL);
+		}
 		for (j = 0; j < height; j++)
 		{
 			grid[i][j] = 0;
 		}
 	}
-	for (k = 0; k < i; k++)
-	{
-		free(grid[k]);
-	}
-
-	free (grid);
 	return (grid);
 }
