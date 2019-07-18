@@ -81,12 +81,14 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	ns = malloc(_strlen(s1) + _strlen(s2) + 1);
+	ns2 = malloc(_strlen(s2) + 1);
+	if (ns2 == NULL)
+		return (NULL);
+	_strncpy(ns2, s2, n);
+	ns = malloc(_strlen(s1) + _strlen(ns2) + 1);
 	if (ns == NULL)
 		return (NULL);
-	ns2 = malloc(_strlen(s2) + 1);
 	_strcpy(ns, s1);
-	_strncpy(ns2, s2, n);
 	_strcat(ns, ns2);
 	return (ns);
 
