@@ -16,38 +16,6 @@ int _strlen(char *s)
 	return (i);
 }
 /**
- * _strcpy - copie a string
- * @dest: destine of copy
- * @src: source of copy
- * Return: return copie
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i;
-
-	for (i = 0; src[i] != '\0'; i++)
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
-}
-/**
- * _strncat - function to concatnate strings with n iytes
- * @dest: destinition for concatnation
- * @src: source of string
- * @n: int type for size of iyte
- * Return: dest
- */
-char *_strncat(char *dest, char *src, int n)
-{
-	int len;
-	int i;
-
-	len = _strlen(dest);
-	for (i = 0; i < n && src[i] != '\0'; i++)
-		dest[len + i] = src[i];
-	return (dest);
-}
-/**
  * string_nconcat - concatenate two string
  * @s1: first string
  * @s2: second string
@@ -57,6 +25,7 @@ char *_strncat(char *dest, char *src, int n)
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *ns;
+	unsigned int i, len;
 
 	if (s1 == NULL)
 		s1 = "";
@@ -67,8 +36,13 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	ns = malloc(_strlen(s1) + n + 1);
 	if (ns == NULL)
 		return (NULL);
-	_strcpy(ns, s1);
-	_strncat(ns, s2, n);
+	for (i = 0; s1[i] != '\0'; i++)
+		ns[i] = s1[i];
+	ns[i] = '\0';
+
+	len = _strlen(ns);
+	for (i = 0; i < n && ns[i] != '\0'; i++)
+		ns[len + i] = s2[i];
 	return (ns);
 
 }
