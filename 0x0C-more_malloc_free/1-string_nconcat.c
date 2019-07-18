@@ -81,7 +81,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	ns2 = malloc(_strlen(s2) + 1);
+	if ((int)n > _strlen(s2))
+		n = _strlen(s2);
+	ns2 = malloc(n + 1);
 	if (ns2 == NULL)
 		return (NULL);
 	_strncpy(ns2, s2, n);
