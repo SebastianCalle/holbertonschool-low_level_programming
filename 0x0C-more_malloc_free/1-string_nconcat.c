@@ -30,16 +30,16 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s2 == NULL)
 		s2 = "";
 	len = (unsigned int)_strlen(s1);
-	ns = malloc(len + n + 1 * sizeof(char));
+	ns = malloc((len + n + 1) * sizeof(char)) ;
 	if (ns == NULL)
 		return (NULL);
 	for (i = 0, j = 0; i < (len + n); i++)
 	{
 		if (i < len)
-			ns[i] = s1[i];
+			*(ns + i) = *(s1 + i);
 		else
 		{
-			ns[i] = s2[j];
+			*(ns + i) = *(s2 + j);
 			j++;
 		}
 
