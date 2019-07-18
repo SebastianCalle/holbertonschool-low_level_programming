@@ -48,11 +48,11 @@ char *_strncat(char *dest, char *src, int n)
 	return (dest);
 }
 /**
- * _strncpy - copies a string
- * @dest: - parameter destine
- * @src: - parameter source
- * @n: parameter integer
- * Return: dest
+ * string_nconcat - concatenate two string
+ * @s1: first string
+ * @s2: second string
+ * @n: size of bits
+ * Return: concatenate string
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
@@ -64,7 +64,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s2 = "";
 	if ((int)n > _strlen(s2))
 		n = _strlen(s2);
-	ns = malloc(_strlen(s1) + _strlen(s2) + 1);
+	ns = malloc(_strlen(s1) + n + 1);
 	if (ns == NULL)
 		return (NULL);
 	_strcpy(ns, s1);
