@@ -1,49 +1,55 @@
 #include "holberton.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
- * _strlen - print the size of a string
- * @s: char parameter
- * Return: 0
+ * _strlen - Returns the lenght of a string.
+ * @s: Type char pointer
+ * Return: Always 0.
  */
 int _strlen(char *s)
 {
-	unsigned int i;
+	unsigned int c;
 
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	for (c = 0; s[c] != 0; c++)
+	{
+	}
+	return (c);
+
 }
+
 /**
- * string_nconcat - concatenate two string
- * @s1: first string
- * @s2: second string
- * @n: size of bits
- * Return: concatenate string
+ * *string_nconcat - function that concatenates two strings
+ * @s1: type char
+ * @s2: type char
+ * @n: type unsigned int
+ * Return: NULL
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *ns;
-	unsigned int i, j, len;
+	char *p;
+	unsigned int  len, x, y;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
+
 	len = (unsigned int)_strlen(s1);
-	ns = malloc((len + n + 1) * sizeof(char)) ;
-	if (ns == NULL)
+	p = malloc((len + n + 1) * sizeof(char));
+	if (p == NULL)
 		return (NULL);
-	for (i = 0, j = 0; i < (len + n); i++)
+
+	for (x = 0, y = 0; x < (len + n); x++)
 	{
-		if (i < len)
-			*(ns + i) = *(s1 + i);
+		if (x < len)
+			*(p + x) = *(s1 + x);
 		else
 		{
-			*(ns + i) = *(s2 + j);
-			j++;
+			*(p + x) = *(s2 + y);
+			y++;
 		}
-
 	}
-	ns[i] = '\0';
-	return (ns);
+	*(p + x) = '\0';
+
+	return (p);
 }
