@@ -12,30 +12,27 @@ int main(int argc, char *argv[])
 	int a, b, r;
 	char s;
 
-	a = atoi(argv[1]);
-	b = atoi(argv[3]);
-	s = argv[2][0];
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
+	s = argv[2][0];
 	if (s != '+' && s != '-' && s != '*'
 			&& s != '/' && s != '%')
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	if (get_op_func(argv[2]))
-	{
-		r = get_op_func(argv[2])(a, b);
-		printf("%d\n", r);
-	}
-	else
+	if (argv[2][1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
+	r = get_op_func(argv[2])(a, b);
+	printf("%d\n", r);
 
 	return (0);
 }
