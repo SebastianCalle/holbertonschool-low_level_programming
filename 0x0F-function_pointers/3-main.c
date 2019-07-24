@@ -9,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int a, b, r;
+	int a = 0, b = 0, r = 0;
 	char s;
 
 	if (argc != 4)
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 			&& s != '/' && s != '%')
 	{
 		printf("Error\n");
-		exit(98);
+		exit(99);
 	}
 	if (argv[2][1] != '\0')
 	{
