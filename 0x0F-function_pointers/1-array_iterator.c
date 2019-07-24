@@ -8,8 +8,16 @@
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
 	int i;
+	void (*ptr)(int);
 
+	if (array != NULL && size != 0 && action != NULL)
+	{
+		ptr = action;
+		if (ptr != NULL)
+		{
+			for (i = 0; i < (int)size ; i++)
+				ptr(array[i]);
 
-	for (i = 0; i < (int)size ; i++)
-		action(array[i]);
+		}
+	}
 }
