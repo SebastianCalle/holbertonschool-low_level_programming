@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
 #include "variadic_functions.h"
 /**
@@ -8,10 +7,7 @@
  */
 void print_c(va_list print)
 {
-	char arg;
-
-	arg = va_arg(print, int);
-	printf("%c", arg);
+	printf("%c", va_arg(print, int));
 }
 /**
  * print_s - print string
@@ -35,10 +31,7 @@ void print_s(va_list print)
  */
 void print_fl(va_list print)
 {
-	float f;
-
-	f = va_arg(print, double);
-	printf("%f", f);
+	printf("%f", va_arg(print, double));
 }
 /**
  * print_i - print integers
@@ -46,10 +39,7 @@ void print_fl(va_list print)
  */
 void print_i(va_list print)
 {
-	int num;
-
-	num = va_arg(print, int);
-	printf("%d", num);
+	printf("%d",va_arg(print, int));
 }
 /**
  * print_all - print anything
@@ -67,7 +57,7 @@ void print_all(const char * const format, ...)
 	va_list print;
 
 	va_start(print, format);
-	while (formar != NULL && format[i])
+	while (format != NULL && format[i])
 	{
 		j = 0;
 		while (pp[i].c != '\0')
