@@ -29,7 +29,6 @@ void print_s(va_list print)
 	else
 	{
 		printf("(nil)");
-		return;
 	}
 }
 /**
@@ -60,13 +59,11 @@ void print_i(va_list print)
  */
 void print_all(const char * const format, ...)
 {
-
 	print_f pp[] = {
 		{"c", print_c},
-		{"s", print_s},
 		{"i", print_i},
+		{"s", print_s},
 		{"f", print_fl},
-		{NULL, NULL}
 	};
 	int i, j, k;
 	va_list print;
@@ -77,7 +74,7 @@ void print_all(const char * const format, ...)
 	while (format[i] != '\0')
 	{
 		j = 0;
-		while (pp[i].c != NULL)
+		while (pp[i].c != '\0')
 		{
 			if (format[i] == pp[j].c[0])
 			{
@@ -92,12 +89,11 @@ void print_all(const char * const format, ...)
 				k++;
 				break;
 			}
-		j++;
+			j++;
 		}
-	i++;
-
+		i++;
 	}
-	printf("\n");
 	va_end(print);
+	printf("\n");
 
 }
