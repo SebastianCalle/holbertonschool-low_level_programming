@@ -27,10 +27,13 @@ void print_s(va_list print)
 	if (s != NULL)
 		printf("%s", s);
 	else
+	{
 		printf("(nil)");
+		return;
+	}
 }
 /**
- * print_f - print floats
+ * print_fl - print floats
  * @print: argument
  */
 void print_fl(va_list print)
@@ -49,7 +52,7 @@ void print_i(va_list print)
 	int num;
 
 	num = va_arg(print, int);
-	printf("%i", num);
+	printf("%d", num);
 }
 /**
  * print_all - print anything
@@ -57,11 +60,7 @@ void print_i(va_list print)
  */
 void print_all(const char * const format, ...)
 {
-	int i, j;
 
-	va_list print;
-
-	va_start(print, format);
 	print_f pp[] = {
 		{"c", print_c},
 		{"s", print_s},
@@ -69,23 +68,36 @@ void print_all(const char * const format, ...)
 		{"f", print_fl},
 		{NULL, NULL}
 	};
+	int i, j, k;
+	va_list print;
 
+	va_start(print, format);
 	i = 0;
-	j = 0;
-	while (format[j])
+	k = 0;
+	while (format[i] != '\0')
 	{
-		while(pp[i].c)
+		j = 0;
+		while (j < 4)
 		{
-			if (pp[i].c[0] == format[j] && format[j] != '\0')
+			if (format[i] == pp[j].c[0])
 			{
-				pp[i].f(print);
+				switch (k)
+				{
+					case 0:
+						break;
+					default:
+						printf(", ");
+				}
+				pp[j].f(print);
+				k++;
+				break;
 			}
-
-		i++;
 		j++;
 		}
+	i++;
 
 	}
 	printf("\n");
+	va_end(print);
 
 }

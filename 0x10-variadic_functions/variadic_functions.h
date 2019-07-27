@@ -5,11 +5,16 @@ int sum_them_all(const unsigned int n, ...);
 void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
-
-typedef struct print_type{
-	char *c; 
+/**
+ * struct print_type - struct of the print all
+ * @c: string char
+ * @f: pointer to function
+ */
+typedef struct print_type
+{
+	char *c;
 	void (*f)();
-}print_f;
+} print_f;
 void print_c(va_list print);
 void print_s(va_list print);
 void print_fl(va_list print);
