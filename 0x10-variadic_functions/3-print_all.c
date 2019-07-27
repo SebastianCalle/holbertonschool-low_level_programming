@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <string.h>
 #include "variadic_functions.h"
 /**
  * print_c - print character
@@ -17,7 +16,6 @@ void print_c(va_list print)
 /**
  * print_s - print string
  * @print: argument
- *
  */
 void print_s(va_list print)
 {
@@ -27,8 +25,7 @@ void print_s(va_list print)
 	if (s == NULL)
 	{
 		printf("(nil)");
-		return ;
-
+		return;
 	}
 	printf("%s", s);
 }
@@ -66,12 +63,10 @@ void print_all(const char * const format, ...)
 		{"s", print_s},
 		{"f", print_fl},
 	};
-	int i, j, k;
+	int i = 0, j, k = 0;
 	va_list print;
 
 	va_start(print, format);
-	i = 0;
-	k = 0;
 	while (formar != NULL && format[i])
 	{
 		j = 0;
@@ -96,5 +91,4 @@ void print_all(const char * const format, ...)
 	}
 	va_end(print);
 	printf("\n");
-
 }
