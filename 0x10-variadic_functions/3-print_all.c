@@ -24,12 +24,13 @@ void print_s(va_list print)
 	char *s;
 
 	s = va_arg(print, char*);
-	if (s != NULL)
-		printf("%s", s);
-	else
+	if (s == NULL)
 	{
 		printf("(nil)");
+		return ;
+
 	}
+	printf("%s", s);
 }
 /**
  * print_fl - print floats
@@ -71,7 +72,7 @@ void print_all(const char * const format, ...)
 	va_start(print, format);
 	i = 0;
 	k = 0;
-	while (format[i] != '\0')
+	while (formar != NULL && format[i])
 	{
 		j = 0;
 		while (pp[i].c != '\0')
