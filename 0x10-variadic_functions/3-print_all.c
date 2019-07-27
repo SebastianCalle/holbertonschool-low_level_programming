@@ -39,7 +39,7 @@ void print_fl(va_list print)
  */
 void print_i(va_list print)
 {
-	printf("%d",va_arg(print, int));
+	printf("%d", va_arg(print, int));
 }
 /**
  * print_all - print anything
@@ -47,16 +47,18 @@ void print_i(va_list print)
  */
 void print_all(const char * const format, ...)
 {
+	int i, j, k;
+	va_list print;
 	print_f pp[] = {
 		{"c", print_c},
 		{"i", print_i},
 		{"s", print_s},
 		{"f", print_fl},
 	};
-	int i = 0, j, k = 0;
-	va_list print;
 
 	va_start(print, format);
+	i = 0;
+	k = 0;
 	while (format != NULL && format[i])
 	{
 		j = 0;
