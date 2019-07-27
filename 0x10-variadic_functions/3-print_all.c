@@ -62,7 +62,7 @@ void print_all(const char * const format, ...)
 	while (format != NULL && format[i])
 	{
 		j = 0;
-		while (pp[i].c != '\0')
+		while (j < 4)
 		{
 			if (format[i] == pp[j].c[0])
 			{
@@ -81,6 +81,6 @@ void print_all(const char * const format, ...)
 		}
 		i++;
 	}
-	va_end(print);
 	printf("\n");
+	va_end(print);
 }
