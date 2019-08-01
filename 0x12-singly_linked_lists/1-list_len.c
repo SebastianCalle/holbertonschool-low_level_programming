@@ -1,6 +1,6 @@
 #include "lists.h"
 /**
- * print_len - print elements of list_t
+ * list_len - print elements of list_t
  * @h: list structure pointer
  * Return: size of node
  */
