@@ -1,5 +1,5 @@
-#ifndef LIST_H
-#define LSIT_H
+#ifndef LINK
+#define LINK
 #include <stdio.h>
 /**
  * struct list_s - singly linked list
