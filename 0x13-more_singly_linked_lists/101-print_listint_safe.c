@@ -6,13 +6,12 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *aux, *aux2;
+	const listint_t *aux = NULL, *aux2 = NULL;
 	size_t i = 0;
 
 	aux = head;
-	if (aux == NULL)
+	if (head == NULL)
 		exit(98);
-
 	while (aux != NULL)
 	{
 		aux2 = aux;
@@ -23,7 +22,7 @@ size_t print_listint_safe(const listint_t *head)
 		if (aux2 < aux)
 		{
 			printf("-> [%p] %d\n", (void *)aux, aux->n);
-			break;
+			return (i);
 		}
 	}
 
