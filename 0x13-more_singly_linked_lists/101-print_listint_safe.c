@@ -17,9 +17,7 @@ size_t print_listint_safe(const listint_t *head)
 		i++;
 		printf("[%p] %d\n", (void *)aux2, aux2->n);
 
-		if (aux == aux2)
-			return (i);
-		if (aux2 < aux)
+		if (aux2 <= aux)
 		{
 			printf("-> [%p] %d\n", (void *)aux, aux->n);
 			return (i);
