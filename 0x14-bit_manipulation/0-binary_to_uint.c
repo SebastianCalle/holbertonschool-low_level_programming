@@ -21,32 +21,23 @@ int _pow(unsigned int n)
  */
 unsigned int binary_to_uint(const char *b)
 {
-	int num[100];
-	unsigned int i, j = 0, convert = 0, n = 0;
+	unsigned int convert = 0, n = 0;
+	int i;
 
 	if (!b)
 		return (0);
 	for (i = 0; b[i] != '\0'; i++)
-	{
-		if (b[i] >= 48 && b[i] <= 57)
-		{
-			num[i] = b[i] - '0';
-		}
-		else
-			return (0);
-	}
+		;
 	i = i - 1;
-	while (b[j])
+	while (i >= 0)
 	{
-		if (num[i] == 1)
+		if (b[i] == '1')
 		{
 			convert += _pow(n);
 			n++;
 			i--;
-			j++;
 			continue;
 		}
-		j++;
 		i--;
 		n++;
 	}
