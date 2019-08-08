@@ -12,7 +12,7 @@ listint_t *find_listint_loop(listint_t *head)
 	if (head == NULL)
 		return (NULL);
 	aux = head;
-	while(aux)
+	while (aux)
 	{
 		aux2 = head;
 		aux = aux->next;
