@@ -7,7 +7,7 @@ int get_endianness(void)
 {
 	unsigned long int i = 1;
 
-	if (i<<63)
+	if (i << 63)
 		return (1);
 	else
 		return (0);
