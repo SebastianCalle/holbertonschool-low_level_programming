@@ -17,7 +17,6 @@ void check_error(int file1, int file2, char *av[])
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write from file  %s\n", av[2]);
 		exit(99);
-
 	}
 
 }
@@ -29,9 +28,9 @@ void check_error(int file1, int file2, char *av[])
  */
 int main(int ag, char **av)
 {
-	int fd, fd1;
+	int fd, fd1, w;
 	char c[1024];
-	ssize_t sz, error;
+	ssize_t sz = 1024, error;
 
 	if (ag != 3)
 	{
@@ -42,9 +41,20 @@ int main(int ag, char **av)
 	fd1 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
 	check_error(fd, fd1, av);
 
-	sz = read(fd, c, 1024);
-	write(fd1, c, sz);
+	while (sz == 1024)
+	{
+		sz = read(fd, c, 1024);
+		if (sz == -1)
+		{
+			check_error(-1, 1, av);
+		}
+		w = write(fd1, c, sz);
+		if (w == -1)
+		{
+			check_error(1, -1, av);
+		}
 
+	}
 	error = close(fd);
 	if (error < 0)
 	{
@@ -57,8 +67,5 @@ int main(int ag, char **av)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
 		exit(100);
 	}
-
 	return (0);
-
-
 }
