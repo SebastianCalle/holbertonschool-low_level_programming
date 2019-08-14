@@ -4,7 +4,6 @@
  * check_error - verifycate if a files have error
  * @file1: first file
  * @file2: seconde file
- * @ag: count of arguments
  * @av: array of arguments
  */
 void check_error(int file1, int file2, char *av[])
@@ -32,7 +31,7 @@ int main(int ag, char **av)
 {
 	int fd, fd1;
 	char c[1024];
-	ssize_t sz;
+	ssize_t sz, error;
 
 	if (ag != 3)
 	{
@@ -46,12 +45,14 @@ int main(int ag, char **av)
 	sz = read(fd, c, 1024);
 	write(fd1, c, sz);
 
-	if (close(fd) < 0)
+	error = close(fd);
+	if (error < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
-	if (close(fd1) < 0)
+	error = close(fd1);
+	if (error < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
 		exit(100);
