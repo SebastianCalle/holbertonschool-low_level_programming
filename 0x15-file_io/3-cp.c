@@ -7,13 +7,8 @@
  * @ag: count of arguments
  * @av: array of arguments
  */
-void check_error(int ag, int file1, int file2, char *av[])
+void check_error(int file1, int file2, char *av[])
 {
-	if (ag != 3)
-	{
-		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
-		exit(97);
-	}
 	if (file1 < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file  %s\n", av[1]);
@@ -39,9 +34,14 @@ int main(int ag, char **av)
 	char c[1024];
 	ssize_t sz;
 
+	if (ag != 3)
+	{
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		exit(97);
+	}
 	fd = open(av[1], O_RDONLY);
 	fd1 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
-	check_error(ag, fd, fd1, av);
+	check_error(fd, fd1, av);
 
 	sz = read(fd, c, 1024);
 	write(fd1, c, sz);
