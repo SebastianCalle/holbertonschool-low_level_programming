@@ -1,5 +1,9 @@
 #include "lists.h"
-
+/**
+ * dlistint_len - give the number of nodes
+ * @h: list to len
+ * Return: return the number of elements
+ */
 size_t dlistint_len(const dlistint_t *h)
 {
 	const dlistint_t *aux, *aux2;
@@ -11,7 +15,7 @@ size_t dlistint_len(const dlistint_t *h)
 	if (aux == NULL)
 	{
 		aux2 = h;
-		while(aux2)
+		while (aux2)
 		{
 			aux2 = aux2->next;
 			n++;
@@ -19,12 +23,12 @@ size_t dlistint_len(const dlistint_t *h)
 	}
 	else
 	{
-		while(aux)
+		while (aux)
 		{
 			aux = aux->prev;
 		}
 		aux2 = aux;
-		while(aux2)
+		while (aux2)
 		{
 			aux2 = aux2->next;
 			n++;
