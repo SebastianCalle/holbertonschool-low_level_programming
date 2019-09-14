@@ -26,6 +26,8 @@ size_t print_dlistint(const dlistint_t *h)
 	{
 		while (aux)
 		{
+			if (aux->prev == NULL)
+				break;
 			aux = aux->prev;
 		}
 		aux2 = aux;
