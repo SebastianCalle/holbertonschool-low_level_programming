@@ -29,13 +29,18 @@ int check_key(hash_node_t *new, const char *key, const char *value)
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int slot = hash_djb2((unsigned char *)key) % ht->size;
+	unsigned long int slot;
 	hash_table_t *aux = NULL;
-	hash_node_t *new = malloc(sizeof(hash_node_t));
+	hash_node_t *new = NULL;
+	hash_node_t *aux_n = NULL;
 
 	if (ht == NULL)
 		return (0);
+	if (strcmp(key, "") == 0 || key == NULL)
+		return (0);
 	aux = ht;
+	new = malloc(sizeof(hash_node_t *));
+	slot = hash_djb2((unsigned char *)key) % ht->size;
 	if (aux->array[slot] == NULL)
 	{
 		aux->array[slot] = new;
@@ -49,20 +54,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
-		new = aux->array[slot];
-		while (new->next)
-		{
-			if (!check_key(new, key, value))
-				return (0);
-			new = new->next;
-		}
-		if (!check_key(new, key, value))
-			return (0);
+		aux_n = aux->array[slot];
+		if (check_key(aux_n, key, value))
+			return (1);
 		new->key = malloc(strlen(key) + 1);
 		new->value = malloc(strlen(value) + 1);
 		if ((!new->key) || (!new->value))
 			return (0);
-		new->next = NULL;
+		new->next = aux_n;
 		strcpy(new->key, key);
 		strcpy(new->value, value);
 	}
