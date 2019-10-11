@@ -66,6 +66,5 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		strcpy(new->key, key);
 		strcpy(new->value, value);
 	}
-	printf("Key: %s value: %s\n", new->key, new->value);
 	return (1);
 }
