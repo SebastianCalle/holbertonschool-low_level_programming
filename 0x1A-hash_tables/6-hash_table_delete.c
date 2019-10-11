@@ -10,12 +10,12 @@ void hash_table_delete(hash_table_t *ht)
 	hash_node_t *aux;
 	hash_node_t *aux2;
 
-	for(i = 0; i < ht->size; i++)
+	for (i = 0; i < ht->size; i++)
 	{
-		if(ht->array[i] != NULL)
+		if (ht->array[i] != NULL)
 		{
 			aux = ht->array[i];
-			while(aux->next)
+			while (aux->next)
 			{
 				aux2 = aux->next;
 				if (aux != NULL)
