@@ -17,5 +17,8 @@ int main(void)
     hash_table_set(ht, "mentioner", "holberton");
     hash_table_set(ht, "hetairas", "School");
     hash_table_set(ht, "mentioner", "School");
+    hash_table_set(ht, "hola", "holberton");
+    hash_table_set(ht, "mundo", "holberton");
+    hash_table_set(ht, "hetairas", "bueno");
     return (EXIT_SUCCESS);
 }
