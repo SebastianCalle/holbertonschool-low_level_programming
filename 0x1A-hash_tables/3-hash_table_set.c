@@ -1,22 +1,4 @@
 #include "hash_tables.h"
-
-/**
- * check_key - function that compare keys
- * @new: struct of node
- * @key: key to compare
- * @value: value to add
- * Return: 1 if succes or 0 if not
- */
-int check_key(hash_node_t *new, const char *key, const char *value)
-{
-	if (strcmp(new->key, key) == 0)
-	{
-		free(new->value);
-		new->value = strdup(value);
-	}
-	return (1);
-}
-
 /**
  * hash_table_set - function that adds an element to the hash table
  * @ht: struct hash_table_t
@@ -27,22 +9,20 @@ int check_key(hash_node_t *new, const char *key, const char *value)
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int slot;
-	hash_node_t *new = NULL;
-	hash_node_t *aux_n = NULL;
+	hash_node_t *new, *aux_n;
 
-	if (ht == NULL)
-		return (0);
-	if (strcmp(key, "") == 0 || key == NULL || value == NULL)
+	if (strcmp(key, "") == 0 || key == NULL || value == NULL || ht == NULL)
 		return (0);
 	new = malloc(sizeof(hash_node_t *));
 	if (!new)
 		return (0);
-	slot = key_index((const char unsigned *)key, ht->size);
+	slot = key_index((const unsigned char *)key, ht->size);
 	if (ht->array[slot] == NULL)
 	{
 		ht->array[slot] = new;
-		new->key = strdup(key);
-		new->value = strdup(value);
+		new->key = strdup(key), new->value = strdup(value);
+		if (new->key == NULL || new->value == NULL)
+			return (0);
 		new->next = NULL;
 	}
 	else
@@ -50,14 +30,22 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		aux_n = ht->array[slot];
 		while (aux_n)
 		{
-			if (check_key(aux_n, key, value))
+			if (strcmp(aux_n->key, key) == 0)
+			{
+				free(aux_n->value);
+				free(new);
+				aux_n->value = strdup(value);
+				if (aux_n->value == NULL)
+					return (0);
 				return (1);
+			}
 			aux_n = aux_n->next;
 		}
 		aux_n = ht->array[slot];
-		new->key = strdup(key);
-		new->value = strdup(value);
-		new->next = aux_n;
+		new->key = strdup(key), new->value = strdup(value);
+		if (new->key == NULL || new->value == NULL)
+			return (0);
+		new->next = aux_n, ht->array[slot] = new;
 	}
 	return (1);
 }
