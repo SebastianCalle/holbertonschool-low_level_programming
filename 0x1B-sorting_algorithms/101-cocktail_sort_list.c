@@ -40,11 +40,12 @@ void swap_nodes_l(listint_t *current, listint_t *forward)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *current = *list, *forward, *l;
+	listint_t *current, *forward, *l;
 	int swap = 1, i, s = 0, size = 0;
 
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
+	current = *list;
 	while (current)
 		size++, current = current->next;
 	size--, current = *list, l = *list;
