@@ -19,10 +19,10 @@ void counting_sort(int *array, size_t size)
 			k = array[i];
 	}
 	k++;
-	counts = (int *)malloc(k * sizeof(int));
+	counts = malloc(k * sizeof(int));
 	if (!counts)
 		return;
-	tmp = (int *)malloc(size * sizeof(int));
+	tmp = malloc(size * sizeof(int));
 	if (!tmp)
 	{
 		free(counts);
