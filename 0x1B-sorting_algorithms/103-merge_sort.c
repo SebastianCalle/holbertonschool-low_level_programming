@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdlib.h>
 /**
  * top_down_merge - merge for split array
  * @array: array source
