@@ -77,8 +77,9 @@ void copyarray(int *array, int first, int last, int *b)
  */
 void merge_sort(int *array, size_t size)
 {
-	int *b = malloc(sizeof(int) * size);
+	int *b;
 
+	b = malloc(sizeof(int) * size);
 	if (array)
 	{
 		copyarray(array, 0, size, b);
