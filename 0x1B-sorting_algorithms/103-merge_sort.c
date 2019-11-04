@@ -1,88 +1,103 @@
 #include "sort.h"
 /**
- * top_down_merge - merge for split array
- * @array: array source
- * @first: first element
- * @m: middle element
- * @last: last element
- * @b: array dest
+ * copy_arr - copy 'array' in 'aux'
+ * @array: integer array
+ * @start: lower idx
+ * @end: higher
+ * @aux: 2nd integer array
+ * Return: nothing
  */
-void top_down_merge(int *array, int first, int  m, int last, int *b)
+void copy_arr(int *array, int start, int end, int *aux)
 {
-	int i = first, j = m;
-	int k;
+	int i;
+
+	for (i = start; i < end; i++)
+		aux[i] = array[i];
+}
+/**
+ * merge - merge 2 arrays
+ * @array: integer array
+ * @start: lower idx
+ * @middle: middle idx
+ * @end: higher
+ * @aux: 2nd integer array
+ * Return: nothing
+ */
+void merge(int *aux, int start, int middle, int end, int *array)
+{
+	int i, j, k;
+
+	i = start;
+	j = middle;
 
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(array + first, m - first);
+	print_array(array + start, middle - start);
 	printf("[right]: ");
-	print_array(array + m, last - m);
-	for (k = first; k < last; k++)
+	print_array(array + middle, end - middle);
+	for (k = start; k < end; k++)
 	{
-		if (i < m && (j >= last || array[i] <= array[j]))
+		if (i < middle && (j >= end || array[i] <= array[j]))
 		{
-			b[k] = array[i];
+			aux[k] = array[i];
 			i++;
 		}
 		else
 		{
-			b[k] = array[j];
+			aux[k] = array[j];
 			j++;
 		}
 	}
 	printf("[Done]: ");
-	print_array(b + first, last - first);
+	print_array(aux + start, end - start);
 }
 /**
- * top_down_split_merge - recursion for split array
- * @b: array dest
- * @first: first element
- * @last: last element
- * @array: array source
+ * split_merge - split an array recursive
+ * @array: integer array
+ * @start: lower idx
+ * @end: higher
+ * @aux: 2nd integer array
+ * @size: array's size
+ * Return: nothing
  */
-void top_down_split_merge(int *b, int first, int last, int *array)
+void split_merge(int *aux, int start, int end, int *array, size_t size)
 {
-	if (last - first < 2)
+	int middle;
+
+	if (end - start < 2)
 		return;
-
-	int m = (last + first) / 2;
-
-	top_down_split_merge(array, first, m, b);
-	top_down_split_merge(array, m, last, b);
-
-	top_down_merge(b, first, m, last, array);
+	middle = (end + start) / 2;
+	split_merge(array, start, middle, aux, size);
+	split_merge(array, middle, end, aux, size);
+	merge(aux, start, middle, end, array);
 }
 /**
- * copyarray - copy of array
- * @array: array source
- * @first: first element
- * @last: last element
- * @b: array dest
+ * m_sort - merge first call
+ * @array: integer array
+ * @aux: 2nd integer array
+ * @size: array's size
+ * Return: nothing
  */
-void copyarray(int *array, int first, int last, int *b)
+void m_sort(int *array, int *aux, size_t size)
 {
-	int i;
-
-	for (i = first; i < last; i++)
-	{
-		b[i] = array[i];
-	}
+	copy_arr(array, 0, size, aux);
+	split_merge(aux, 0, size, array, size);
 }
-
 /**
- * merge_sort - sort array whit merge sort algortihm
- * @array: array to sort
- * @size: size of array
+ * merge_sort - sorts an array of integers in ascending order
+ * @array: integer array
+ * @size: array's size
+ * Return: nothing
  */
 void merge_sort(int *array, size_t size)
 {
-	int *b;
+	int *aux;
 
-	b = malloc(sizeof(int) * size);
+	aux = malloc(size * sizeof(int));
 	if (array)
 	{
-		copyarray(array, 0, size, b);
-		top_down_split_merge(b, 0, size, array);
+		m_sort(array, aux, size);
+		copy_arr(aux, 0, size, array);
 	}
-	free(b);
+	free(aux);
 }
