@@ -71,19 +71,6 @@ void copyarray(int *array, int first, int last, int *b)
 }
 
 /**
- * mergeSort - recursion of merge sort
- * @array: array to sort
- * @size: size of array
- * @b: array aux
- */
-void mergeSort(int *array, int size, int *b)
-{
-	copyarray(array, 0, size, b);
-	top_down_split_merge(b, 0, size, array);
-}
-
-
-/**
  * merge_sort - sort array whit merge sort algortihm
  * @array: array to sort
  * @size: size of array
@@ -92,6 +79,10 @@ void merge_sort(int *array, size_t size)
 {
 	int *b = malloc(sizeof(int) * size);
 
-	mergeSort(array, size, b);
-	free (b);
+	if (array)
+	{
+		copyarray(array, 0, size, b);
+		top_down_split_merge(b, 0, size, array);
+	}
+	free(b);
 }
