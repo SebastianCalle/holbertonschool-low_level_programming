@@ -1,60 +1,85 @@
 #include "sort.h"
 #include <stdlib.h>
-
 /**
- * merge - merge of array
- * @array: to merge
- * @f: first element
+ * top_down_merge - merge for split array
+ * @array: array source
+ * @first: first element
  * @m: middle element
- * @l: last element
+ * @last: last element
+ * @b: array dest
  */
-void merge(int *array, int f, int m, int l)
+void top_down_merge(int *array, int first, int  m, int last, int *b)
 {
-	int *tmp = NULL;
-	int i = 0, l1 = f, r1 = m, l2 = m + 1, r2 = l;
+	int i = first, j = m;
+	int k;
 
-	tmp = (int *)malloc((l - f + 1) * sizeof(int));
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(array + f, m - f);
+	print_array(array + first, m - first);
 	printf("[right]: ");
-	print_array(array + m, l - m);
-	while ((l1 <= r1) && (l2 <= r2))
+	print_array(array + m, last - m);
+	for (k = first; k < last; k++)
 	{
-		if(array[l1] < array[l2])
-			tmp[i++] = array[l1++];
+		if (i < m && (j >= last || array[i] <= array[j]))
+		{
+			b[k] = array[i];
+			i++;
+		}
 		else
-			tmp[i++] = array[l2++];
+		{
+			b[k] = array[j];
+			j++;
+		}
 	}
-	while (l1 <= r1)
-		tmp[i++] = array[l1++];
-	while (l2 <= r2)
-		tmp[i++] = array[l2++];
+	printf("[Done]: ");
+	print_array(b + first, last - first);
+}
+/**
+ * top_down_split_merge - recursion for split array
+ * @b: array dest
+ * @first: first element
+ * @last: last element
+ * @array: array source
+ */
+void top_down_split_merge(int *b, int first, int last, int *array)
+{
+	if (last - first < 2)
+		return;
 
-	for (i = f; i <= l; i++)
-		array[i] = tmp[i - f];
+	int m = (last + first) / 2;
 
-	free(tmp);
+	top_down_split_merge(array, first, m, b);
+	top_down_split_merge(array, m, last, b);
+
+	top_down_merge(b, first, m, last, array);
+}
+/**
+ * copyarray - copy of array
+ * @array: array source
+ * @first: first element
+ * @last: last element
+ * @b: array dest
+ */
+void copyarray(int *array, int first, int last, int *b)
+{
+	int i;
+
+	for (i = first; i < last; i++)
+	{
+		b[i] = array[i];
+	}
 }
 
 /**
  * mergeSort - recursion of merge sort
  * @array: array to sort
- * @f: first element
- * @l: last element
+ * @size: size of array
+ * @b: array aux
  */
-void mergeSort(int *array, int f, int l)
+void mergeSort(int *array, int size, int *b)
 {
-	int m = 0;
-
-	if (f < l)
-	{
-		m = (f + l) / 2;
-		mergeSort(array, f, m);
-		mergeSort(array, m + 1, l);
-
-		merge(array, f, m, l);
-	}
+	copyarray(array, 0, size, b);
+	top_down_split_merge(b, 0, size, array);
 }
 
 
@@ -65,7 +90,7 @@ void mergeSort(int *array, int f, int l)
  */
 void merge_sort(int *array, size_t size)
 {
-	int f = 0;
-	int l = size - 1;
-	mergeSort(array, f, l);
+	int *b = malloc(sizeof(int) * size);
+
+	mergeSort(array, size, b);
 }
