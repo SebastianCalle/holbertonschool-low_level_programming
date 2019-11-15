@@ -1,0 +1,11 @@
+all: programa
+# program that execute a holberton.c
+
+programa: main.o holberton.o 
+	gcc main.o holberton.o -o holberton
+
+main.o: main.c m.h
+	gcc -c main.c 
+
+holberton.o: holberton.c m.h
+	gcc -c holberton.c
