@@ -1,0 +1,15 @@
+# program that execute a holberton.c
+CC = gcc
+SRC = main.c holberton.c
+OBJ = main.o holberton.o
+NAME = holberton
+
+all: program
+program: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+main.o: main.c m.h
+	$(CC)	-c main.c
+holberton.o: holberton.c m.h
+	$(CC)	-c holberton.c
+
