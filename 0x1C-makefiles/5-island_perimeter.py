@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Return the perimeter of the island grid"""
 
+
 def island_perimeter(grid):
     count = 0
     for x in range(len(grid)):
