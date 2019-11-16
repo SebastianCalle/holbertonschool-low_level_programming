@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def island_perimeter(grid):
     """Return the perimeter of the island grid"""
     width = 0
@@ -18,7 +19,5 @@ def island_perimeter(grid):
         f = 0
         tmp_w = 0
 
-    perimeter = 2 * width + 2 * height
+    perimeter = (width + height) * 2
     return perimeter
-
-    print(height, width)
