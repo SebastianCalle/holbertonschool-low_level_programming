@@ -1,6 +1,19 @@
 #include "binary_trees.h"
 
 /**
+ * binary_root - function that creates a binary tree node
+ * @tree: node
+ * Return: pointer to root
+ */
+binary_tree_t *binary_root(binary_tree_t *tree)
+{
+
+	while (!tree)
+		tree = tree->parent;
+	return (tree);
+}
+
+/**
  * binary_tree_rotate_right - function that checks if tree is complete
  * @tree: node to check
  * Return: pointer to the root node
@@ -28,17 +41,4 @@ binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 	x->parent = y;
 	return (root);
 
-}
-
-/**
- * binary_root - function that creates a binary tree node
- * @tree: node
- * Return: pointer to root
- */
-binary_tree_t *binary_root(binary_tree_t *tree)
-{
-
-	while (!tree)
-		tree = tree->parent;
-	return (tree);
 }
