@@ -5,7 +5,7 @@
  * @value: value of the node
  * Return: pointer to the node
  */
-bst_t *avl_insert_node(bst_t **tree, int value)
+bst_t *bst_insert(bst_t **tree, int value)
 {
 	bst_t *new = NULL, *x;
 
@@ -56,33 +56,37 @@ bst_t *avl_insert_node(bst_t **tree, int value)
 avl_t *avl_insert(avl_t **tree, int value)
 {
 	int factor_balance = 0;
-	avl_t *node, *parent;
+	avl_t *node, *tmp;
 
 	if (tree == NULL)
 		return (NULL);
 
-	node = avl_insert_node(tree, value);
+	node = bst_insert(tree, value);
+	tmp = node;
 	if (!node)
 		return (NULL);
-	parent = node->parent;
-	while (parent)
+	while (node)
 	{
-		factor_balance = binary_tree_balance(parent->parent);
-		if (factor_balance > 1 && node->n > parent->n)
+		factor_balance = binary_tree_balance(node);
+		if (factor_balance > 1 && tmp->n < node->left->n)
 		{
-			binary_tree_rotate_left(parent);
-			binary_tree_rotate_right(node->parent);
+			node = binary_tree_rotate_right(node);
 		}
-		if (factor_balance > 1 && node->n < parent->n)
-			binary_tree_rotate_right(parent);
-		if (factor_balance < -1 && node->n < parent->n)
+		if (factor_balance > 1 && tmp->n > node->left->n)
 		{
-			binary_tree_rotate_right(parent);
-			binary_tree_rotate_left(node->parent);
+			node = binary_tree_rotate_left(node->left);
+			node = binary_tree_rotate_right(tmp->parent);
 		}
-		if (factor_balance < -1 && node->n > parent->n)
-			binary_tree_rotate_left(parent);
-		parent = parent->parent;
+		if (factor_balance < -1 && tmp->n < node->right->n)
+		{
+			node = binary_tree_rotate_right(node->right);
+			node = binary_tree_rotate_left(tmp->parent);
+		}
+		if (factor_balance < -1 && tmp->n > node->right->n)
+		{
+			node = binary_tree_rotate_left(node);
+		}
+		node = node->parent;
 	}
-	return (node);
+	return (tmp);
 }
