@@ -1,6 +1,6 @@
 #include "binary_trees.h"
 /**
- * binary_root - function that creates a binary tree node
+ * binary_root1 - function that creates a binary tree node
  * @tree: node
  * Return: pointer to root
  */
