@@ -1,5 +1,25 @@
 #include "search_algos.h"
 /**
+ * print_array - print array
+ * @i: initial position
+ * @f: final position
+ * @array: array to print
+ */
+void print_array(size_t i, size_t f, int *array)
+{
+	printf("Searching in array: ");
+	while (i <= f)
+	{
+		printf("%d", array[i]);
+		if (i != f)
+			printf(", ");
+		i++;
+	}
+	printf("\n");
+
+}
+
+/**
  * binary_search - Function that searches for a value in a array
  * @array: pointer to first element to array
  * @size: size of array
@@ -14,19 +34,11 @@ int binary_search(int *array, size_t size, int value)
 		return (-1);
 	l = i = 0;
 	r = (int)size - 1;
-	f = r;
 
 	while (l <= r)
 	{
-		printf("Searching in array: ");
 		f = r;
-		for ( ; array[i] <= f; i++)
-		{
-			if (i == f)
-				printf("%d\n", array[i]);
-			else
-				printf("%d, ", array[i]);
-		}
+		print_array(i, f, array);
 		m = (l + r) / 2;
 		if (array[m] < value)
 		{
@@ -37,6 +49,7 @@ int binary_search(int *array, size_t size, int value)
 		{
 			r = m - 1;
 			i = 0;
+
 		}
 		else
 			return (m);
