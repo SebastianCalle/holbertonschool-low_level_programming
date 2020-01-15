@@ -30,7 +30,7 @@ int binary_search(int *array, size_t size, int value)
 {
 	int l, r, m, i, f;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 	l = i = 0;
 	r = (int)size - 1;
